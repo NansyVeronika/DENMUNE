@@ -11,10 +11,9 @@ for _p in (DATA_PROCESSED, RAW_RES, TABLES, FIGURES):
     _p.mkdir(parents=True, exist_ok=True)
 
 SEED = 0
-N_RUNS = 20      # runs per randomized baseline (paper: 100)
+N_RUNS = 20      
 DS7_K = 39       # K used for Chameleon DS7 in the paper (Table 1)
 
-# keys: substrings searched (case/underscore-insensitive) in file names inside data/raw
 DATASETS = {
     "aggregation":   dict(keys=["aggregation"], kind="synthetic", title="Aggregation", fig=8),
     "spiral":        dict(keys=["spiral"],      kind="synthetic", title="Spiral",      fig=9),

@@ -1,4 +1,3 @@
-"""Fig. 5, Fig. 6, Fig. 7."""
 import matplotlib.pyplot as plt
 
 from src.utils import load_raw
@@ -15,8 +14,7 @@ def fig5():
     ax[1].set(xlabel="Iteration", ylabel="Number of clustered points", title="(b) Clustered data points")
     for a in ax:
         a.grid(alpha=.3)
-    fig.suptitle(f"Fig. 5 - DenMune cluster formation in Phase I ({r['title']}, K={r['k']}); "
-                 f"CSharp/CMune not implemented")
+    fig.suptitle(f"DenMune cluster formation in Phase I ({r['title']}, K={r['k']}); ")
     save_fig(fig, "fig05_convergence.png")
 
 
@@ -32,7 +30,7 @@ def fig6():
     for a in ax:
         a.grid(alpha=.3)
         a.legend()
-    fig.suptitle(f"Fig. 6 - Speed of DenMune ({r['title']})")
+    fig.suptitle(f" Speed of DenMune ({r['title']})")
     save_fig(fig, "fig06_speed.png")
 
 
@@ -47,7 +45,7 @@ def fig7():
         a.set(xlabel="K", ylabel="NMI", title=title, ylim=(0, 1.02))
         a.grid(alpha=.3)
         a.legend(fontsize=8)
-    fig.suptitle("Fig. 7 - DenMune stability over changes in K (NMI)")
+    fig.suptitle(" DenMune stability over changes in K (NMI)")
     save_fig(fig, "fig07_stability.png")
 
 

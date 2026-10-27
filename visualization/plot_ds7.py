@@ -1,4 +1,3 @@
-"""Table 1/2 as images, Fig. 3 (phases of DenMune), Fig. 4 (cluster propagation)."""
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -11,9 +10,9 @@ def main():
     r = load_raw("ds7_points")
     X = r["X"]
     table_png(r["table1"], "table_01_ds7_points.png",
-              f"Table 1 - Strong and weak points found by DenMune ({r['title']})")
+              f"Strong and weak points found by DenMune ({r['title']})")
     table_png(r["table2"].set_index("K"), "table_02_points_vs_K.png",
-              f"Table 2 - Types of points vs K ({r['title']})")
+              f"Types of points vs K ({r['title']})")
 
     # Fig 3: point types -> skeleton after Phase I -> final result after Phase II
     fig, ax = plt.subplots(1, 3, figsize=(16, 5))
@@ -30,7 +29,7 @@ def main():
     ax[2].set_title("(c) Phase II: weak points merged, noise removed (x)")
     for a in ax[:1]:
         a.set_xticks([]); a.set_yticks([])
-    fig.suptitle(f"Fig. 3 - Phases of DenMune ({r['title']}, K={r['k']})")
+    fig.suptitle(f"Phases of DenMune ({r['title']}, K={r['k']})")
     save_fig(fig, "fig03_phases.png")
 
     # Fig 4: propagation snapshots
@@ -46,5 +45,5 @@ def main():
         a.set_title(f"iteration {it}  ({lab.max() + 1} clusters)")
     for a in ax[len(its):]:
         a.axis("off")
-    fig.suptitle("Fig. 4 - Cluster formation and propagation in DenMune (Phase I)")
+    fig.suptitle("Cluster formation and propagation in DenMune (Phase I)")
     save_fig(fig, "fig04_propagation.png")

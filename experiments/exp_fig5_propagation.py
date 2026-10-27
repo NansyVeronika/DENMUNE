@@ -1,4 +1,3 @@
-"""Fig. 5: number of clusters / number of clustered points vs iteration (Phase I)."""
 from src.config import DS7_K
 from src.data_loader import ds7_or_largest
 from src.denmune import DenMune

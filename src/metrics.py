@@ -4,8 +4,6 @@ from sklearn.metrics import (normalized_mutual_info_score, adjusted_rand_score,
 
 
 def f1_score_clustering(y, labels):
-    """Clustering F-measure: each class is matched to its best cluster, weighted by class size.
-    Noise (-1) points are never part of a cluster, so they lower recall."""
     y = np.asarray(y); labels = np.asarray(labels); n = len(y)
     classes = np.unique(y)
     clusters = np.unique(labels[labels >= 0])
@@ -25,7 +23,6 @@ def f1_score_clustering(y, labels):
 
 
 def evaluate(y, labels):
-    """NMI/ARI/homogeneity/completeness treat noise (-1) as one extra cluster."""
     return {
         "F1": f1_score_clustering(y, labels),
         "NMI": normalized_mutual_info_score(y, labels),

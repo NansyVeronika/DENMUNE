@@ -1,11 +1,3 @@
-"""The 9 comparison algorithms. Each is a generator yielding candidate label vectors
-(different seeds / parameter values); the experiment keeps the best one, as in the paper
-("best performance recorded").
-
-Faithful: KMeans++ , HDBSCAN, Spectral (sklearn defaults), CBKM (Maxmin init + restarts),
-          RS (random swap), FINCH (first-neighbour clustering equation), FastDP (kNN density peaks).
-Simplified re-implementations (authors' code is not available here): NPIR, RCC.
-For publication-grade numbers on those two use the authors' code."""
 import warnings
 
 import numpy as np
@@ -18,8 +10,6 @@ from sklearn.neighbors import NearestNeighbors
 
 warnings.filterwarnings("ignore")
 
-
-# ---------------------------------------------------------------- K-means family
 def kmeanspp(X, k, runs, seed):
     for r in range(runs):
         yield KMeans(k, init="k-means++", n_init=1, random_state=seed + r).fit_predict(X)
@@ -55,8 +45,6 @@ def random_swap(X, k, runs, seed, swaps=100):
                 C, best = km2.cluster_centers_, km2.inertia_
         yield KMeans(k, init=C, n_init=1, max_iter=50).fit_predict(X)
 
-
-# ---------------------------------------------------------------- sklearn ones
 def spectral(X, k, runs, seed):
     for r in range(min(runs, 5)):
         yield SpectralClustering(n_clusters=k, random_state=seed + r).fit_predict(X)
@@ -69,7 +57,6 @@ def hdbscan(X, k, runs, seed):
             yield HDBSCAN(min_cluster_size=m).fit_predict(X)
 
 
-# ---------------------------------------------------------------- FINCH
 def _finch_partitions(X):
     n, d = X.shape
     cur, lab, parts = X.copy(), np.arange(n), []
@@ -97,10 +84,9 @@ def finch(X, k, runs, seed):
         yield np.zeros(len(X), int)
         return
     ncs = np.array([p.max() + 1 for p in parts])
-    yield parts[int(np.abs(ncs - k).argmin())]           # partition closest to true #clusters
+    yield parts[int(np.abs(ncs - k).argmin())]          
 
 
-# ---------------------------------------------------------------- FastDP (kNN density peaks)
 def _fastdp(X, k, K):
     n = len(X)
     d, _ = NearestNeighbors(n_neighbors=K + 1).fit(X).kneighbors(X)
@@ -113,7 +99,7 @@ def _fastdp(X, k, K):
     for s in range(0, n, 500):
         e = min(n, s + 500)
         D = cdist(X[s:e], X)
-        D[rank[None, :] >= rank[s:e, None]] = np.inf     # only denser points
+        D[rank[None, :] >= rank[s:e, None]] = np.inf    
         j = D.argmin(1)
         delta[s:e] = D[np.arange(e - s), j]
         nh[s:e] = j
@@ -138,10 +124,7 @@ def fastdp(X, k, runs, seed):
             yield _fastdp(X, k, K)
 
 
-# ---------------------------------------------------------------- NPIR (simplified)
 def npir(X, k, runs, seed, iters=10, knn=10):
-    """k-means++ start, then `iters` rounds where a fraction IR of the points is re-assigned to
-    the majority cluster of their kNN list. IR in [0.01, 0.05, 0.10, 0.15, 0.20] as in the paper."""
     rng = np.random.default_rng(seed)
     n = len(X)
     knn = min(knn, n - 1)
@@ -155,13 +138,11 @@ def npir(X, k, runs, seed, iters=10, knn=10):
                 lab[sel] = eye[lab[nbr[sel]]].sum(1).argmax(1)
             yield lab
 
-
-# ---------------------------------------------------------------- RCC (simplified)
 def _rcc(X, knn):
     n = len(X)
     idx = NearestNeighbors(n_neighbors=knn + 1).fit(X).kneighbors(X)[1][:, 1:]
     A = csr_matrix((np.ones(n * knn), (np.repeat(np.arange(n), knn), idx.ravel())), shape=(n, n))
-    A = A.minimum(A.T)                                   # mutual kNN graph
+    A = A.minimum(A.T)                                  
     Au = triu(A, 1).tocoo()
     i, j = Au.row, Au.col
     if len(i) == 0:
@@ -175,7 +156,7 @@ def _rcc(X, knn):
     L0 = diags(np.asarray(W.sum(1)).ravel()) - W
     lam = np.linalg.norm(X, 2) / max(eigsh(L0.tocsc(), k=1, which="LA")[0][0], 1e-12)
     U, mu, I = X.copy(), 3 * eps2.max(), identity(n, format="csc")
-    for it in range(100):                                # graduated non-convexity
+    for it in range(100):                                
         l = (mu / (mu + ((U[i] - U[j]) ** 2).sum(1))) ** 2
         Wl = coo_matrix((w * l, (i, j)), shape=(n, n))
         Wl = Wl + Wl.T
@@ -194,7 +175,7 @@ def rcc(X, k, runs, seed):
             yield _rcc(X, knn)
 
 
-ALGORITHMS = {            # column order of Tables 6-11
+ALGORITHMS = {            
     "DenMune": None,
     "NPIR": npir, "CBKM": cbkm, "RS": random_swap, "FastDP": fastdp, "FINCH": finch,
     "HDBSCAN": hdbscan, "RCC": rcc, "Spectral": spectral, "KM+": kmeanspp,

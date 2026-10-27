@@ -1,5 +1,3 @@
-"""Table 1 (strong/weak/noise on Chameleon DS7, K=39), Table 2 (same vs K=1..20),
-plus phase labels and propagation snapshots used for Fig. 3 and Fig. 4."""
 import pandas as pd
 
 from src.config import DS7_K, TABLES

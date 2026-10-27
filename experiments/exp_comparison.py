@@ -1,6 +1,3 @@
-"""DenMune vs the 9 algorithms on every labeled dataset.
-Produces Tables 6-11 (F1/NMI/ARI with Total rank / Avg rank / Rank), Tables 12-13
-(homogeneity & completeness), and the label vectors used in Figs 8-12."""
 import numpy as np
 import pandas as pd
 

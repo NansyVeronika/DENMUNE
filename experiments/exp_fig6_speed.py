@@ -1,5 +1,3 @@
-"""Fig. 6: (a) running time vs number of points (data added in increments),
-(b) running time vs K. Core time = total minus the kNN/proximity computation, as in the paper."""
 import numpy as np
 
 from src.config import DS7_K, SEED

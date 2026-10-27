@@ -1,6 +1,5 @@
 """Loads whatever format the datasets are in (.mat / .txt / .csv / .data).
-Prints which arrays it picked so you can verify. High-dimensional data is
-reduced to 2-D with t-SNE (as in the paper, Sec. 4.1) and cached in data/processed."""
+High-dimensional data is reduced to 2-D with t-SNE (as in the paper, Sec. 4.1) and cached in data/processed."""
 import re
 from functools import lru_cache
 
@@ -47,7 +46,7 @@ def _split_matrix(M):
 def _read_mat(path):
     try:
         return {k: v for k, v in loadmat(path).items() if not k.startswith("__")}
-    except NotImplementedError:                      # MATLAB v7.3 files
+    except NotImplementedError:                      
         import h5py
         with h5py.File(path, "r") as f:
             return {k: np.array(v).T for k, v in f.items() if isinstance(v, h5py.Dataset)}
@@ -90,9 +89,9 @@ def _load_text(path):
         first = f.readline()
     sep = "," if "," in first else (";" if ";" in first else r"\s+")
     df = pd.read_csv(path, sep=sep, header=None, engine="python")
-    df = df.dropna(axis=1, how="all")                        # empty trailing columns
+    df = df.dropna(axis=1, how="all")                        
 
-    # header row? first cell non-numeric while the rest of that column is numeric
+
     head = pd.to_numeric(df.iloc[0], errors="coerce")
     body = df.iloc[1:].apply(pd.to_numeric, errors="coerce")
     if (head.isna() & (body.notna().mean() > 0.95)).any():
@@ -101,21 +100,21 @@ def _load_text(path):
     num, txt = [], []
     for c in df.columns:
         s = pd.to_numeric(df[c], errors="coerce")
-        if s.notna().mean() > 0.95:                           # '?' missing values -> median
+        if s.notna().mean() > 0.95:                           
             num.append(s.fillna(s.median()).to_numpy(float))
         else:
             txt.append(c)
     M = np.column_stack(num)
-    if M.shape[1] > 4 and _id_like(M[:, 0]):                  # sample-id column (breast cancer)
+    if M.shape[1] > 4 and _id_like(M[:, 0]):                  
         M = M[:, 1:]
     print(f"  [{path.name}] numeric columns={M.shape[1]} text columns={len(txt)}")
 
-    if txt:                                                   # class given as text (ecoli, diagnosis M/B)
+    if txt:                                                   
         lab = pd.factorize(df[txt[-1]])[0]
         if lab.max() + 1 <= max(2, min(60, len(lab) // 5)):
-            return M, lab                                     # else it was a name column: ignore it
+            return M, lab                                     
     if M.shape[1] >= 3 and not _label_like(M[:, -1]) and _label_like(M[:, 0]):
-        return M[:, 1:], M[:, 0]                              # label stored in the first column
+        return M[:, 1:], M[:, 0]                              
     return _split_matrix(M)
 
 def _tsne(name, X):

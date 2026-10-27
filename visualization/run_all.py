@@ -1,6 +1,4 @@
-"""Run everything:  python -m visualization.run_all   (from inside ml_pro/)
-Options: --skip-experiments   only redraw plots from results/raw
-         --runs N             runs per randomized baseline (default 20, paper 100)"""
+"""Run everything:  python -m visualization.run_all """
 import argparse
 import sys
 import time
@@ -9,10 +7,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from src.config import N_RUNS, RESULTS                                       # noqa: E402
-from experiments import (exp_ds7_points, exp_fig5_propagation, exp_fig6_speed,   # noqa: E402
+from src.config import N_RUNS, RESULTS                                       
+from experiments import (exp_ds7_points, exp_fig5_propagation, exp_fig6_speed,   
                          exp_k_sweep, exp_comparison)
-from visualization import plot_ds7, plot_curves, plot_comparison              # noqa: E402
+from visualization import plot_ds7, plot_curves, plot_comparison              
 
 
 FAILED = []
@@ -20,10 +18,10 @@ FAILED = []
 
 def step(name, fn):
     t = time.time()
-    print(f"\n===== {name} =====")
+    print(f"\n{name}")
     try:
         fn()
-        print(f"----- done in {time.time() - t:.1f}s")
+        print(f"done in {time.time() - t:.1f}s")
     except Exception:
         FAILED.append(name)
         print(f"!!!!! {name} failed:")

@@ -1,5 +1,3 @@
-"""DenMune quality vs K on every labeled dataset (Fig. 7) and best-K selection
-(K in [1,50] for small datasets, [1,200] for big ones, best NMI kept)."""
 import pandas as pd
 
 from src.config import TABLES
