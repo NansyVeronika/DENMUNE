@@ -1,0 +1,6 @@
+Dataset,DenMune,NPIR,CBKM,RS,FastDP,FINCH,HDBSCAN,RCC,Spectral,KM+
+Breast cancer,0.41,0.44,0.45,0.4,0.49,0.0,0.41,0.33,0.41,0.45
+Ecoli,0.69,0.62,0.59,0.58,0.67,0.55,0.52,0.69,0.62,0.62
+Total Rank,6,9,9,16,4,19,16,11,11,8
+Avg rank,3.0,4.5,4.5,8.0,2.0,9.5,8.0,5.5,5.5,4.0
+Rank,2,4,4,8,1,10,8,6,6,3
