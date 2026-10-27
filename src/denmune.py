@@ -68,20 +68,15 @@ class DenMune:
             self.history_, self.snapshots_ = None, {}
 
         # ---- Phase II: weak points join clusters one by one
+                # ---- Phase II: each weak point joins the cluster with which it shares the
+        # most MNN-*seeds* (Phase I labels only); no seed in its MNN list -> noise type-2
         labels = labels1.copy()
         weak_order = order[weak[order]]
-        for _ in range(self.weak_passes):
-            changed = False
-            for q in weak_order:
-                if labels[q] >= 0:
-                    continue
-                l = labels[mdst[indptr[q]:indptr[q + 1]]]
-                l = l[l >= 0]
-                if l.size:
-                    labels[q] = np.bincount(l).argmax()
-                    changed = True
-            if not changed:
-                break
+        for q in weak_order:
+            l = labels1[mdst[indptr[q]:indptr[q + 1]]]       # seed labels only
+            l = l[l >= 0]
+            if l.size:
+                labels[q] = np.bincount(l).argmax()
 
         ptype = np.full(n, STRONG)
         ptype[weak] = WEAK

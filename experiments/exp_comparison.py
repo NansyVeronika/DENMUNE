@@ -79,6 +79,9 @@ def run(n_runs=N_RUNS):
                 rows.append(dict(dataset=d["title"], kind=d["kind"], algo=algo, F1=np.nan, NMI=np.nan,
                                  ARI=np.nan, Homogeneity=np.nan, Completeness=np.nan))
         store[name] = dict(title=d["title"], kind=d["kind"], X=X, y=y, preds=preds)
+    if not rows:
+        print("[Comparison] no labeled datasets loaded - nothing to compare.")
+        return
     df = pd.DataFrame(rows)
     df.to_csv(TABLES / "all_scores_long.csv", index=False)
     save_raw("comparison", dict(results=df, store=store, tables=build_tables(df)))
