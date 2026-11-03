@@ -1,0 +1,12 @@
+dataset,F1_ours,F1_paper,dF1,NMI_ours,NMI_paper,ARI_ours,ARI_paper,best_other_F1_ours,best_other_F1_paper,DenMune_wins_ours,DenMune_wins_paper
+Spiral,1.0,1.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,True,True
+Compound,0.95,0.97,-0.02,0.92,0.94,0.96,0.97,0.94,0.89,True,True
+Jain,0.99,1.0,-0.01,0.95,1.0,0.97,1.0,1.0,1.0,False,True
+Pathbased,0.96,0.97,-0.01,0.84,0.89,0.88,0.92,0.87,0.87,True,True
+Mouse,0.97,0.98,-0.01,0.94,0.94,0.96,0.97,0.79,0.96,True,True
+Aggregation,1.0,1.0,-0.0,0.99,0.99,0.99,0.99,1.0,0.81,False,True
+Flame,0.99,1.0,-0.01,0.91,1.0,0.96,1.0,1.0,1.0,False,True
+Iris,0.89,0.9,-0.01,0.78,0.81,0.72,0.76,0.97,0.98,False,False
+Pen,0.86,0.89,-0.03,0.87,0.88,0.81,0.83,0.89,0.67,False,True
+Breast cancer,0.72,0.97,-0.25,0.18,0.8,0.25,0.88,0.5,0.97,True,True
+Ecoli,0.77,0.77,0.0,0.68,0.71,0.73,0.75,0.77,0.71,True,True

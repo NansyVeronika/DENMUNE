@@ -1,0 +1,3 @@
+Score,Iris,Pen,Breast cancer,Ecoli
+Homogeneity,0.78,0.95,0.17,0.61
+Completeness,0.78,0.8,0.18,0.78
