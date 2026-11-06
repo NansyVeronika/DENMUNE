@@ -1,12 +1,11 @@
 dataset,kind,n,D,true_k,K,F1,NMI,ARI,clusters_found,noise_pct,strong,weak,noise1,noise2,NMI_std_over_K,runtime_s,rank_NMI,best_baseline,best_baseline_NMI,paper_NMI,verdict,diagnosis
 Spiral,synthetic,312,2,3,2,1.0,1.0,1.0,3,0.0,306,6,0,0,0.301,0.005,1,FastDP,1.0,1.0,excels,-
-Compound,synthetic,399,2,6,7,0.951,0.924,0.958,7,6.0,229,146,1,23,0.083,0.01,2,RCC,0.942,0.94,competitive,42% weak points: overlapping / fuzzy borders
-Jain,synthetic,373,2,2,20,0.995,0.945,0.972,2,0.5,209,162,0,2,0.336,0.004,2,Spectral,1.0,1.0,competitive,44% weak points: overlapping / fuzzy borders
-Pathbased,synthetic,300,2,3,6,0.958,0.843,0.883,3,6.7,198,82,1,19,0.077,0.003,1,Spectral,0.766,0.89,excels,-
-Mouse,synthetic,500,2,4,50,0.968,0.938,0.965,3,2.4,261,227,1,11,0.171,0.007,1,FastDP,0.718,0.94,excels,clusters merged (3 vs 4); 48% weak points: overlapping / fuzzy borders
-Aggregation,synthetic,788,2,7,13,0.996,0.987,0.99,7,0.3,474,312,0,2,0.037,0.007,3,FastDP,0.996,0.99,competitive,-
-Flame,synthetic,240,2,2,23,0.987,0.908,0.955,2,0.8,128,110,0,2,0.43,0.002,2,FastDP,1.0,1.0,competitive,small sample: kNN graph too sparse (paper Sec.4.3); 47% weak points: overlapping / fuzzy borders
-Iris,real,150,4,3,13,0.887,0.779,0.722,3,0.7,84,65,0,1,0.037,0.003,7,NPIR,0.901,0.81,struggles,small sample: kNN graph too sparse (paper Sec.4.3); 44% weak points: overlapping / fuzzy borders
-Pen,real,10992,2,10,90,0.864,0.871,0.808,19,1.7,5853,4952,0,187,0.077,0.827,2,HDBSCAN,0.881,,competitive,over-segmentation (19 vs 10); 47% weak points: overlapping / fuzzy borders
-Breast cancer,real,683,8,9,47,0.722,0.177,0.245,2,2.2,342,326,0,15,0.032,0.016,1,HDBSCAN,0.164,0.8,excels,clusters merged (2 vs 9); 50% weak points: overlapping / fuzzy borders
-Ecoli,real,336,2,8,15,0.772,0.682,0.727,3,4.5,195,126,0,15,0.02,0.004,1,RCC,0.663,0.71,excels,clusters merged (3 vs 8); 42% weak points: overlapping / fuzzy borders
+Compound,synthetic,399,2,6,7,0.951,0.924,0.958,7,6.0,229,146,1,23,0.083,0.019,2,RCC,0.942,0.94,competitive,42% weak points: overlapping / fuzzy borders
+Jain,synthetic,373,2,2,20,0.995,0.945,0.972,2,0.5,209,162,0,2,0.336,0.023,2,Spectral,1.0,1.0,competitive,44% weak points: overlapping / fuzzy borders
+Pathbased,synthetic,300,2,3,6,0.958,0.843,0.883,3,6.7,198,82,1,19,0.077,0.015,1,Spectral,0.766,0.89,excels,-
+Mouse,synthetic,500,2,4,50,0.968,0.938,0.965,3,2.4,261,227,1,11,0.171,0.037,1,FastDP,0.718,0.94,excels,clusters merged (3 vs 4); 48% weak points: overlapping / fuzzy borders
+Aggregation,synthetic,788,2,7,13,0.996,0.987,0.99,7,0.3,474,312,0,2,0.037,0.04,3,FastDP,0.996,0.99,competitive,-
+Flame,synthetic,240,2,2,23,0.987,0.908,0.955,2,0.8,128,110,0,2,0.43,0.015,2,FastDP,1.0,1.0,competitive,small sample: kNN graph too sparse (paper Sec.4.3); 47% weak points: overlapping / fuzzy borders
+Iris,real,150,4,3,13,0.887,0.779,0.722,3,0.7,84,65,0,1,0.037,0.008,7,NPIR,0.901,0.81,struggles,small sample: kNN graph too sparse (paper Sec.4.3); 44% weak points: overlapping / fuzzy borders
+Pen,real,10992,2,10,90,0.864,0.871,0.808,19,1.7,5853,4952,0,187,0.077,1.423,2,HDBSCAN,0.881,,competitive,over-segmentation (19 vs 10); 47% weak points: overlapping / fuzzy borders
+Ecoli,real,336,2,8,15,0.772,0.682,0.727,3,4.5,195,126,0,15,0.02,0.01,1,RCC,0.663,0.71,excels,clusters merged (3 vs 8); 42% weak points: overlapping / fuzzy borders
