@@ -28,12 +28,17 @@ def main():
         ax[1].plot(r["ks"], r["k_total"], "o-", c=DENMUNE_C)
         ax[1].set(title=f"(b) time vs K - {r['title']}", xlabel="K", ylabel="seconds")
         save(fig, "fig06_speed")
-    if raw_exists("k_sweep"):
-        sw = load_raw("k_sweep")
-        fig, ax = plt.subplots(figsize=(8, 4))
-        for i, (n, r) in enumerate(sw.items()):
-            ax.plot(r["df"].K, r["df"].NMI, c=colour(i), label=r["title"])
-            ax.plot(r["best_k"], r["df"].NMI.max(), "o", c=colour(i), ms=5)
+        if raw_exists("k_sweep"):
+            sw = load_raw("k_sweep")
+            KEEP = ["ecoli", "iris", "aggregation", "pen"]
+            fig, ax = plt.subplots(figsize=(8, 4))
+            i = 0
+            for n, r in sw.items():
+                if not any(k in n.lower() or k in r["title"].lower() for k in KEEP):
+                    continue
+                ax.plot(r["df"].K, r["df"].NMI, c=colour(i), label=r["title"])
+                ax.plot(r["best_k"], r["df"].NMI.max(), "o", c=colour(i), ms=5)
+                i += 1
         ax.set(title="Fig 7 - NMI vs K (dot = best K)", xlabel="K", ylabel="NMI", ylim=(0, 1.02))
-        ax.legend(fontsize=7, ncol=2)
+        ax.legend(fontsize=8)
         save(fig, "fig07_k_stability_nmi")
