@@ -1,7 +1,3 @@
-"""Tables 6-13: DenMune vs the paper's 9 baselines (F1 / NMI / ARI + Homogeneity / Completeness).
-PROTOCOL (same as the paper): every algorithm gets the true number of clusters (where it needs one)
-and is reported at its best setting / best run by NMI. This is an ORACLE comparison - see
-exp_k_stability for what happens when K is NOT tuned with labels."""
 import numpy as np
 import pandas as pd
 

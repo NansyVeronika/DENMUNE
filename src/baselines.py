@@ -55,7 +55,7 @@ def spectral(X, k, runs, seed):
 
 def hdbscan(X, k, runs, seed):
     from sklearn.cluster import HDBSCAN
-    for m in (2, 3, 5, 8, 10, 15, 20, 30, 50, 100):      # min_cluster_size in [2, 100]
+    for m in (2, 3, 5, 8, 10, 15, 20, 30, 50, 100):     
         if m < len(X):
             yield HDBSCAN(min_cluster_size=m).fit_predict(X)
 
@@ -67,7 +67,7 @@ def _finch_partitions(X):
         m = len(cur)
         first = NearestNeighbors(n_neighbors=2).fit(cur).kneighbors(cur)[1][:, 1]
         A = csr_matrix((np.ones(m), (np.arange(m), first)), shape=(m, m))
-        G = A + A.T + A @ A.T            # j=k(i) or i=k(j) or k(i)=k(j)
+        G = A + A.T + A @ A.T           
         nc, c = connected_components(G, directed=False)
         if nc == m:
             break
@@ -184,7 +184,6 @@ ALGORITHMS = {
     "HDBSCAN": hdbscan, "RCC": rcc, "Spectral": spectral, "KM+": kmeanspp,
 }
 
-# ---- EXTRA baseline (not in the paper's 9): used only by the showcase experiment -------------
 def dbscan(X, k, runs, seed):
     from sklearn.cluster import DBSCAN
     n = len(X)

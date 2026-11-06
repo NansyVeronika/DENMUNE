@@ -1,4 +1,4 @@
-"""Extension plots: t-SNE seed sensitivity, noise robustness (+ detection precision/recall), Wholesale case study."""
+
 import matplotlib.pyplot as plt
 import numpy as np
 

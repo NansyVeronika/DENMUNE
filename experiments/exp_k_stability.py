@@ -1,6 +1,3 @@
-"""EXP A (how reliable?): is DenMune stable when K changes?  Re-uses the K sweep (no recomputation).
-Reports: NMI on the plan's K grid, size of the 'good K' plateau, and the price of NOT tuning K with labels
-(oracle best-K vs a fixed label-free K)."""
 import numpy as np
 import pandas as pd
 

@@ -1,6 +1,3 @@
-"""EXTENSION - Robustness of the t-SNE + DenMune pipeline.
-Exp A: t-SNE random-seed sensitivity on real high-dimensional datasets.
-Exp B: increasing amounts of uniform background noise on 2-D synthetic datasets."""
 from itertools import combinations
 
 import numpy as np
@@ -34,7 +31,6 @@ def _ncl(lab):
     return int(lab.max() + 1) if (lab >= 0).any() else 0
 
 
-# ----------------------------- Experiment A -----------------------------
 def run_a():
     out = {}
     for name in HIGH_D:
@@ -48,8 +44,6 @@ def run_a():
         k = _k_for(name, 20)
         rows, labs, embs = [], [], []
         for s in SEEDS:
-            # init="random" on purpose: with init="pca" (used by data_loader) t-SNE is
-            # almost deterministic, so changing the seed would reveal nothing.
             Z = TSNE(n_components=2, init="random", random_state=s,
                      perplexity=min(30, (len(X) - 1) / 3)).fit_transform(X)
             lab = DenMune(k).fit(Z).labels_
@@ -70,7 +64,6 @@ def run_a():
     return out
 
 
-# ----------------------------- Experiment B -----------------------------
 def run_b(seed=0):
     rng = np.random.default_rng(seed)
     out = {}
@@ -94,9 +87,9 @@ def run_b(seed=0):
                 Xn = np.vstack([X, noise])
                 lab = DenMune(k).fit(Xn).labels_
                 orig, inj = lab[:n], lab[n:]
-                met = evaluate(y, orig)           # judged on the ORIGINAL points only
+                met = evaluate(y, orig)          
                 rows.append(dict(noise_frac=f, rep=r, K=k, n_clusters=_ncl(lab),
-                                 injected_detected_pct=100 * float(np.mean(inj < 0)) if m else np.nan,   # recall
+                                 injected_detected_pct=100 * float(np.mean(inj < 0)) if m else np.nan,   
                                  noise_precision_pct=100 * float((inj < 0).sum() / max(1, (lab < 0).sum())) if m else np.nan,
                                  original_lost_pct=100 * float(np.mean(orig < 0)),
                                  F1=met["F1"], NMI=met["NMI"], ARI=met["ARI"]))

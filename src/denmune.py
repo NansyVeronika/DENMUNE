@@ -1,11 +1,7 @@
 """DenMune Algorithms .
-
-Pipeline: KNN lists -> reverse lists (votes) -> MNN = KNN-> ∩ KNN<- ->
- noise type-1 (|MNN|=0) -> strong/seed (|KNN<-| >= K) vs weak ->
  Phase I  : seeds sharing seed-MNNs are merged into the cluster skeleton
  Phase II : weak points, one by one in canonical order, join the cluster with which
-            they share the most MNN members; the rest is noise type-2.
-labels_ == -1 means noise. Only parameter: K."""
+            they share the most MNN members; the rest is noise type-2."""
 import time
 
 import numpy as np
@@ -57,7 +53,7 @@ class DenMune:
         order = np.argsort(-votes, kind="stable")              
         seed_order = order[strong[order]]
 
-        # ---- Phase I: skeleton from seeds
+        # Phase I: skeleton from seeds
         if self.track:
             labels1, self.history_, self.snapshots_ = self._skeleton_tracked(
                 n, seed_order, indptr, mdst, strong)
@@ -66,7 +62,7 @@ class DenMune:
             self.history_, self.snapshots_ = None, {}
 
         
-    # ---- Phase II: each weak point joins the cluster with which it shares the
+    # Phase II: each weak point joins the cluster with which it shares the
         # most MNN-*seeds* (Phase I labels only); no seed in its MNN list -> noise type-2
         labels = labels1.copy()
         weak_order = order[weak[order]]

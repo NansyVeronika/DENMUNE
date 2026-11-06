@@ -1,4 +1,3 @@
-"""Shared plotting helpers (colour-blind-safe palette, saving, table rendering)."""
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -6,7 +5,6 @@ import numpy as np
 
 from src.config import FIGURES
 
-# Okabe-Ito colour-blind-safe order, then tab20 for datasets with many clusters
 OKABE = ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#56B4E9", "#D55E00", "#F0E442", "#000000"]
 NOISE_C = "#9a9a9a"
 TYPE_C = {0: "#0072B2", 1: "#E69F00", 2: "#D55E00", 3: "#CC79A7"}

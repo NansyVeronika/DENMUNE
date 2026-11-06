@@ -1,5 +1,3 @@
-"""Loads whatever format the datasets are in (.mat / .txt / .csv / .data).
-High-dimensional data is reduced to 2-D with t-SNE (as in the paper, Sec. 4.1) and cached in data/processed."""
 import re
 from functools import lru_cache
 

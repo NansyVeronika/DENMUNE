@@ -1,4 +1,3 @@
-"""Tables 1-2: strong / weak / noise points on Chameleon DS7 (K=39) and as K changes."""
 import pandas as pd
 
 from src.config import DS7_K, TABLES

@@ -1,4 +1,3 @@
-"""Figs 5-7: propagation curves, speed (with empirical complexity exponent), K-stability curves."""
 import matplotlib.pyplot as plt
 import numpy as np
 

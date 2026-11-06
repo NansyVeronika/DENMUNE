@@ -1,4 +1,3 @@
-"""Tables 6-13 (as images), Figs 8-12 (all algorithms on one dataset), Figs 14-15 (ground truth)."""
 import matplotlib.pyplot as plt
 import numpy as np
 

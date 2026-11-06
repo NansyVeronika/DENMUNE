@@ -1,5 +1,3 @@
-"""EXP 3 (high-dimensional data): what does DenMune do on RAW features vs PCA / FA / NMF / t-SNE (2-D)?
-A K-Means++ control on the SAME representations separates 'the reduction helps' from 'DenMune helps'."""
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
@@ -16,7 +14,7 @@ K_SEARCH = [5, 10, 15, 20, 30, 40, 50]
 
 
 def _reps(d):
-    X, Z = d["X_raw"], d["X"]                       # Z = t-SNE 2-D cached by data_loader
+    X, Z = d["X_raw"], d["X"]                       
     reps = {"Raw": X, "PCA-2": PCA(2, random_state=SEED).fit_transform(X)}
     try:
         reps["FA-2"] = FactorAnalysis(2, random_state=SEED).fit_transform(X)

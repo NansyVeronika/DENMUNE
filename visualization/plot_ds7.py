@@ -1,4 +1,3 @@
-"""Tables 1-2 and Figs 3-4 (strong/weak/noise anatomy and propagation of the skeleton on DS7)."""
 import matplotlib.pyplot as plt
 import numpy as np
 

@@ -1,5 +1,3 @@
-"""EXP 1 (where DenMune excels): ground truth vs DenMune vs DBSCAN / K-Means++ / HDBSCAN / Spectral / FINCH
-on natively 2-D datasets.  Also stores the strong / weak / noise anatomy (EXP D) for each dataset."""
 import numpy as np
 import pandas as pd
 

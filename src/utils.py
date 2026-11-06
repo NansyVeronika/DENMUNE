@@ -21,8 +21,6 @@ def load_raw(name):
     with open(p, "rb") as f:
         return pickle.load(f)
 
-
-# ---- small helpers shared by the new experiments ----
 def n_clusters(lab):
     lab = np.asarray(lab)
     return int(lab.max() + 1) if (lab >= 0).any() else 0

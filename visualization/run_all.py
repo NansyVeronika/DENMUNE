@@ -1,5 +1,5 @@
-"""Run everything:  python -m visualization.run_all
-Options: --skip-experiments (only re-draw plots)   --runs N (repeats for randomised baselines)"""
+"""Run everything:  python -m visualization.run_all"""
+
 import argparse
 import sys
 import time
@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.config import N_RUNS, RESULTS
 from experiments import (exp_ds7_points, exp_fig5_propagation, exp_fig6_speed, exp_k_sweep, exp_comparison,
                          exp_showcase, exp_k_stability, exp_dimred, exp_failure, exp_paper_vs_ours,
-                         exp_robustness, exp_wholesale)
+                         exp_robustness)
 from visualization import plot_ds7, plot_curves, plot_comparison, plot_extension, plot_analysis
 
 FAILED = []
@@ -50,7 +50,6 @@ def main():
         step("Paper vs ours", exp_paper_vs_ours.run)
         # --- Part 3: extensions
         step("Extension: robustness (t-SNE seeds + noise)", exp_robustness.run)
-        step("Extension: Wholesale case study", exp_wholesale.run)
     step("Plots: DS7 (Tables 1-2, Figs 3-4)", plot_ds7.main)
     step("Plots: Figs 5-7", plot_curves.main)
     step("Plots: Tables 6-13, Figs 8-12, 14-15", plot_comparison.main)

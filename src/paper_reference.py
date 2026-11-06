@@ -19,7 +19,7 @@ PAPER = {
     "yeast":     dict(F1=0.40, NMI=0.27, ARI=0.13, best_other_F1=0.44, best_other="CBKM"),
 }
 
-# Paper Table 4/5: best NMI of DenMune on raw features vs 2-D reductions
+
 PAPER_DR = {
     "pendigits":     dict(raw=0.81, pca=0.48, fa=0.48, nmf=0.36, tsne=0.88),
     "iris":          dict(raw=0.73, tsne=0.81),
@@ -27,5 +27,5 @@ PAPER_DR = {
     "ecoli":         dict(raw=0.01, tsne=0.71),
 }
 
-# Paper Table 1 / Table 2 (Chameleon DS7, K=39)
+
 PAPER_DS7 = dict(strong=5858, weak=3471, noise1=0, noise2=671)

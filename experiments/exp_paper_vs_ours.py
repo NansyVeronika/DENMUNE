@@ -1,4 +1,3 @@
-"""Our reproduction vs the numbers printed in the paper (DenMune F1/NMI/ARI and the best competitor's F1)."""
 import numpy as np
 import pandas as pd
 

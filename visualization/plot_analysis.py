@@ -1,5 +1,3 @@
-"""Plots for the new, clearer experiments: showcase, point anatomy, failure analysis, K stability,
-dimensionality reduction, paper vs ours."""
 import matplotlib.pyplot as plt
 import numpy as np
 

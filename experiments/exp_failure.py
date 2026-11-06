@@ -1,5 +1,3 @@
-"""EXP 4 (where DenMune struggles): one row per dataset with quality, structure, noise, point types,
-K-sensitivity, runtime, rank among the 10 algorithms, the paper's number and a rule-based DIAGNOSIS."""
 import numpy as np
 import pandas as pd
 
